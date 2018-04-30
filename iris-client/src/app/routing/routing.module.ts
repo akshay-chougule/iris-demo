@@ -6,14 +6,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 
 import { HomeComponent } from '../pages/home/home.component';
-import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { LoginComponent } from '../pages/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({
@@ -26,6 +24,6 @@ const routes: Routes = [
     })
   ],
   exports: [RouterModule],
-  declarations: [HomeComponent, LoginComponent, DashboardComponent]
+  declarations: [HomeComponent, LoginComponent]
 })
 export class RoutingModule {}
