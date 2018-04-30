@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
-import { IAppState, LIST_USERS, IUser } from '../../store';
+import { IAppState, LIST_INFACT_RECORDS, IRecord } from '../../store';
 import { Observable } from 'rxjs/Observable';
-import { UserService } from '../../services/user.service';
+import { InfactService } from '../../services/infact.service';
 
 @Component({
   selector: 'app-home',
@@ -10,17 +10,17 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  @select('users') users$: Observable<IUser[]>;
+  @select('records') infactRecords: IRecord[];
   constructor(
     private store: NgRedux<IAppState>,
-    private userService: UserService
+    private infactService: InfactService
   ) {}
 
   ngOnInit() {
-    this.userService
-      .getUsers()
-      .subscribe(users =>
-        this.store.dispatch({ type: LIST_USERS, payload: users })
+    this.infactService
+      .getInfactRecord()
+      .subscribe(records =>
+        this.store.dispatch({ type: LIST_INFACT_RECORDS, payload: records })
       );
   }
 }

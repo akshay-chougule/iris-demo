@@ -9,6 +9,7 @@ import { IAppState, store } from './store';
 import { UserService } from './services/user.service';
 import { CustomHttpInterceptor } from './httpinterceptor';
 import { AuthService } from './services/auth.service';
+import { InfactService } from './services/infact.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,8 @@ import { AuthService } from './services/auth.service';
       useClass: CustomHttpInterceptor,
       multi: true
     },
-    AuthService
+    AuthService,
+    InfactService
   ],
   bootstrap: [AppComponent]
 })

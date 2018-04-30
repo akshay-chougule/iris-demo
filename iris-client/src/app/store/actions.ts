@@ -1,2 +1,2 @@
-export const LIST_USERS = 'LIST_USERS';
+export const LIST_INFACT_RECORDS = 'LIST_INFACT_RECORDS';
 export const USER_LOGIN = 'USER_LOGIN';

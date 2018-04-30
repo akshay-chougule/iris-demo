@@ -1,9 +1,9 @@
-import { IUser } from './IUser';
+import { IRecord } from './IRecord';
 
 export interface IAppState {
-    users: IUser[];
+    records: IRecord[];
 }
 
 export const INITIAL_STATE: IAppState = {
-    users: []
+  records: []
 };

@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "http://hipunl69727:8021",
+    "secure": false
+  }
+}
