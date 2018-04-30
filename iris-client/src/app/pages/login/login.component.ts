@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   public password: FormControl;
   @select('auth') auth$: Observable<Credentials>;
   constructor(private auth: AuthService, private store: NgRedux<IAppState>, private router: Router) {
-    this.createForm();
+
   }
 
   createForm() {
@@ -34,13 +34,23 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth$.subscribe(auth => {
-      if (auth && auth.accessToken) {
-        this.router.navigate(['/home']);
-      }
-    });
+    this.createForm();
+    this.checkLoginAndNavigate();
   }
 
+  checkLoginAndNavigate() {
+    const promise = new Promise((resolve, reject) => {
+      this.auth$.subscribe(auth => {
+        if (auth && auth.accessToken) {
+          this.router.navigate(['/home']);
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      });
+    });
+    return promise;
+  }
   signIn(e) {
     e.preventDefault();
     console.log(this.loginForm.value);
