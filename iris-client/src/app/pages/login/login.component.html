@@ -1,21 +1,26 @@
-<form (ngSubmit)="signIn($event)" [formGroup]="loginForm">
-  <div class="form-group" [ngClass]="{'has-danger':login.invalid, 'has-success': login.valid}">
-    <label>Email</label>
-    <input type="text" name="login" formControlName="login" required class="form-control">
-    <div class="form-control-feedback" *ngIf="login.errors && (login.dirty || login.touched)">
-      <p *ngIf="login.errors.email">Valid Email is required</p>
+<div class="col-sm-6">
+  <div class="card card-block">
+    <div class="card-body">
+      <form (ngSubmit)="signIn($event)" [formGroup]="loginForm">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" name="login" formControlName="login" required class="form-control" [ngClass]="{'is-invalid':login.invalid && login.touched, 'is-valid': login.valid  && login.touched}">
+          <div class="form-text invalid-feedback" *ngIf="login.errors && (login.dirty || login.touched)">
+            <p *ngIf="login.getError('email')">Valid Email is required</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" formControlName="password" required class="form-control" [ngClass]="{'is-invalid':password.invalid && password.touched, 'is-valid': password.valid && password.touched}">
+          <div class="form-text invalid-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+            <p *ngIf="password.getError('required')">Password is required</p>
+            <p *ngIf="password.getError('minlength')">Password must be 8 characters long</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">Sign In</button>
+        </div>
+      </form>
     </div>
   </div>
-  <div class="form-group" [ngClass]="{'has-danger':password.invalid, 'has-success': password.valid}">
-    <label>Password</label>
-    <input type="password" formControlName="password" required class="form-control">
-    <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
-      <p *ngIf="password.errors.required">Password is required</p>
-      <p *ngIf="password.errors.minlength">Password must be 8 characters long</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <button class="btn btn-primary">Sign In</button>
-  </div>
-
-</form>
+</div>
