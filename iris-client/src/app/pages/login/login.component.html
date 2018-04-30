@@ -1,0 +1,21 @@
+<form (ngSubmit)="signIn($event)" [formGroup]="loginForm">
+  <div class="form-group" [ngClass]="{'has-danger':login.invalid, 'has-success': login.valid}">
+    <label>Email</label>
+    <input type="text" name="login" formControlName="login" required class="form-control">
+    <div class="form-control-feedback" *ngIf="login.errors && (login.dirty || login.touched)">
+      <p *ngIf="login.errors.email">Valid Email is required</p>
+    </div>
+  </div>
+  <div class="form-group" [ngClass]="{'has-danger':password.invalid, 'has-success': password.valid}">
+    <label>Password</label>
+    <input type="password" formControlName="password" required class="form-control">
+    <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+      <p *ngIf="password.errors.required">Password is required</p>
+      <p *ngIf="password.errors.minlength">Password must be 8 characters long</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary">Sign In</button>
+  </div>
+
+</form>
